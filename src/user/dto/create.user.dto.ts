@@ -68,4 +68,11 @@ export class CreateUserDto {
   @IsBoolean()
   @IsOptional()
   isConfirm: boolean;
+
+  @ApiProperty({
+    example: 'qwerty12345',
+    required: true,
+  })
+  @IsString()
+  password: string;
 }

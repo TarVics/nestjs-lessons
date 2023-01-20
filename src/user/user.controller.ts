@@ -15,16 +15,14 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-
 import { CreateUserDto } from './dto/create.user.dto';
-import { User } from './user.model';
 import { UserService } from './user.service';
+import { User } from './user.model';
 
 @ApiTags('Users')
 @Controller('users')
 export class UserController {
   constructor(private readonly usersService: UserService) {}
-
   @Get()
   getAllUsers() {
     return this.usersService.getAll();
