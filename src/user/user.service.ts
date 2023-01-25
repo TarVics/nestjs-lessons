@@ -35,4 +35,16 @@ export class UserService {
       throw new BadRequestException({ message: 'bad request' });
     }
   }
+
+  async findOne(username: string): Promise<User | undefined> {
+    return this.userRepository.findOne({
+      where: { email: username },
+    });
+  }
+
+  async findOneById(userId: string): Promise<User | undefined> {
+    return this.userRepository.findOne({
+      where: { id: userId },
+    });
+  }
 }

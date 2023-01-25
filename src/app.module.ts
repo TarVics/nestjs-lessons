@@ -14,6 +14,7 @@ import { User } from './user/user.model';
 import { Car } from './car/car.model';
 import { Role } from './role/role.model';
 import { UserRoles } from './role/user-role.model';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { UserRoles } from './role/user-role.model';
       models: [User, Car, Role, UserRoles],
       autoLoadModels: true,
     }),
+    AuthModule,
   ],
   controllers: [AppController /*, UserController, CarController*/],
   providers: [AppService /*, UserService*/],

@@ -14,15 +14,19 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create.user.dto';
 import { UserService } from './user.service';
 import { User } from './user.model';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @ApiTags('Users')
 @Controller('users')
 export class UserController {
   constructor(private readonly usersService: UserService) {}
+
+  @UseGuards(JwtAuthGuard)
   @Get()
   getAllUsers() {
     return this.usersService.getAll();
@@ -38,7 +42,7 @@ export class UserController {
   @ApiQuery({ name: 'id', example: '1sfd-24f1234' })
   @Get('/:id')
   getOneUserById(@Param('id') id: string) {
-    return `get user id ${id}`;
+    return this.usersService.findOneById(id);
   }
 
   @Put('/:id')
